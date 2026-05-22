@@ -1,3 +1,5 @@
+Work in progress just something I am playing with right now
+
 # FUC - Friendly User Config
 
 A Python configuration library that uses command-line argument syntax for config files.
@@ -37,6 +39,13 @@ Or install editable:
 git clone https://github.com/scottmonster/fuc.git
 cd fuc
 pip install -e .
+```
+
+with dev deps
+```bash
+git clone https://github.com/scottmonster/fuc.git
+cd fuc
+pip install -e .[dev]
 ```
 
 ## Quick Start

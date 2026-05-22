@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = {file = "LICENSE"}
 authors = [
-    {name = "Your Name", email = "your.email@example.com"}
+    {name = "Your Name", email = "dev@scottv.id"}
 ]
 keywords = ["configuration", "config", "cli", "dataclass", "settings"]
 classifiers = [
@@ -26,6 +26,12 @@ classifiers = [
 ]
 dependencies = []
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+
 [project.urls]
 Homepage = "https://github.com/yourusername/fuc"
 Repository = "https://github.com/yourusername/fuc"
@@ -34,3 +40,10 @@ Documentation = "https://github.com/yourusername/fuc#readme"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/fuc"]
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = ["-v", "--strict-markers"]
