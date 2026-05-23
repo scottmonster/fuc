@@ -1,0 +1,17 @@
+
+# Main application configuration
+--log_level INFO
+
+# Database connection settings
+--database.host localhost
+--database.port 5432
+--database.name myapp
+--database.pool_size 10
+--database.timeout 30.0
+--database.use_ssl true
+
+# HTTP server configuration
+--server.host 0.0.0.0
+--server.ports 8080 8443
+--server.workers 4
+--server.debug false

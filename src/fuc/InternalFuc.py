@@ -23,8 +23,8 @@ class InternalFuc:
     """
     
     app_name: str
-    system_path: str = ""
-    user_path: str = ""
+    system_path: str | Path = ""
+    user_path: str | Path = ""
     env_var: str = ""
     track_provenance: bool = False
     

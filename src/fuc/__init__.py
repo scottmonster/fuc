@@ -10,7 +10,7 @@ All sources are merged with clear precedence rules.
 """
 
 from .config import Fuc
-from .private import InternalFuc
+from .InternalFuc import InternalFuc
 from .errors import (
     FucError,
     ParseError,

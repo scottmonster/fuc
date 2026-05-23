@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 from dataclasses import dataclass
 from fuc import Fuc
-from fuc.private import InternalFuc
+from fuc.InternalFuc import InternalFuc
 
 
 @dataclass
