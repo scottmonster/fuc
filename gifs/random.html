@@ -1,0 +1,28 @@
+Also clean up the duplicated </head>, <body>, and closing tags:
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Redirecting</title>
+</head>
+<body>
+	<script>
+		const urls = [
+			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/bamboozled.gif',
+			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/its-a-trap-dominic-toretto.gif',
+			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/you-tricked-me-eleven.gif',
+			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/gotcha-b.gif',
+			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/rickroll-roll.gif',
+			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/gotcha.gif',
+			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/tricked-deceived.gif'
+		];
+
+		const selectedUrl =
+			urls[Math.floor(Math.random() * urls.length)];
+
+		location.replace(selectedUrl);
+	</script>
+</body>
+</html>
