@@ -26,7 +26,7 @@
 <body>
 	<img id="random-gif" alt="Random GIF">
 	<script>
-		const assetBaseUrl = new URL('./', location.href);
+		const assetBaseUrl = new URL('../assets/', location.href);
 		const filenames = [
 'bamboozled.gif',
 'dumb-youre-really-dumb.gif',
@@ -47,10 +47,41 @@
 'you-tricked-me-gabby.gif'
 		];
 
-		const selectedUrl = new URL(
-			filenames[Math.floor(Math.random() * filenames.length)],
-			assetBaseUrl
-		);
+		const storageKey = 'static.pages.base.remaining-gifs.v1';
+
+		function shuffle(items) {
+			for (let index = items.length - 1; index > 0; index -= 1) {
+				const randomIndex = Math.floor(Math.random() * (index + 1));
+				[items[index], items[randomIndex]] = [items[randomIndex], items[index]];
+			}
+
+			return items;
+		}
+
+		let remainingFilenames = [];
+
+		try {
+			const storedFilenames = JSON.parse(localStorage.getItem(storageKey));
+			if (Array.isArray(storedFilenames)) {
+				remainingFilenames = storedFilenames.filter((filename) => filenames.includes(filename));
+			}
+		} catch {
+			// Use a new cycle when storage is unavailable or contains invalid data.
+		}
+
+		if (remainingFilenames.length === 0) {
+			remainingFilenames = shuffle([...filenames]);
+		}
+
+		const selectedFilename = remainingFilenames.pop();
+
+		try {
+			localStorage.setItem(storageKey, JSON.stringify(remainingFilenames));
+		} catch {
+			// The current selection still works when storage is unavailable.
+		}
+
+		const selectedUrl = new URL(selectedFilename, assetBaseUrl);
 
 		document.getElementById('random-gif').src = selectedUrl;
 	</script>

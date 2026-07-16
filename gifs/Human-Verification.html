@@ -5,6 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Got`em</title>
 	<style>
+		html, body {
+			background-color: black;
+		}
+
 		body {
 			margin: 0;
 			min-height: 100vh;
@@ -15,24 +19,68 @@
 			width: 100vw;
 			height: 100vh;
 			object-fit: contain;
+			object-position: center;
 		}
 	</style>
 </head>
 <body>
 	<img id="random-gif" alt="Random GIF">
 	<script>
-		const urls = [
-			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/bamboozled.gif',
-			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/its-a-trap-dominic-toretto.gif',
-			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/you-tricked-me-eleven.gif',
-			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/gotcha-b.gif',
-			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/rickroll-roll.gif',
-			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/gotcha.gif',
-			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/tricked-deceived.gif'
+		const assetBaseUrl = new URL('./', location.href);
+		const filenames = [
+'bamboozled.gif',
+'dumb-youre-really-dumb.gif',
+'gordon-ramsay-idiot-sandwich.gif',
+'gotcha-b.gif',
+'gotcha-i-got-you.gif',
+'hes-a-fraud-joe-biden.gif',
+'hes-a-liar-liar.gif',
+'hes-a-liar-upset.gif',
+'hes-full-of-shit-ralph-macchio.gif',
+'it-was-all-a-lie-lie.gif',
+'kevinmcgarry-mcgarries.gif',
+'rickroll-roll.gif',
+'tricked-deceived.gif',
+'wedding-crashers-will-ferrell.gif',
+'we-got-em.gif',
+'you-tricked-me-gabby.gif'
 		];
 
-		const selectedUrl =
-			urls[Math.floor(Math.random() * urls.length)];
+		const storageKey = 'static.pages.base.remaining-gifs.v1';
+
+		function shuffle(items) {
+			for (let index = items.length - 1; index > 0; index -= 1) {
+				const randomIndex = Math.floor(Math.random() * (index + 1));
+				[items[index], items[randomIndex]] = [items[randomIndex], items[index]];
+			}
+
+			return items;
+		}
+
+		let remainingFilenames = [];
+
+		try {
+			const storedFilenames = JSON.parse(localStorage.getItem(storageKey));
+			if (Array.isArray(storedFilenames)) {
+				remainingFilenames = storedFilenames.filter((filename) => filenames.includes(filename));
+			}
+		} catch {
+			// Use a new cycle when storage is unavailable or contains invalid data.
+		}
+
+		if (remainingFilenames.length === 0) {
+			remainingFilenames = shuffle([...filenames]);
+		}
+
+		const selectedFilename = remainingFilenames.pop();
+
+		try {
+			localStorage.setItem(storageKey, JSON.stringify(remainingFilenames));
+		} catch {
+			// The current selection still works when storage is unavailable.
+		}
+
+		const selectedUrl = new URL(selectedFilename, assetBaseUrl);
 
 		document.getElementById('random-gif').src = selectedUrl;
 	</script>
