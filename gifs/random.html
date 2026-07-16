@@ -5,9 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Got`em</title>
 	<style>
-    html, body {
-      background-color: black;
-    }
+		html, body {
+			background-color: black;
+		}
+
 		body {
 			margin: 0;
 			min-height: 100vh;
@@ -18,24 +19,38 @@
 			width: 100vw;
 			height: 100vh;
 			object-fit: contain;
+			object-position: center;
 		}
 	</style>
 </head>
 <body>
 	<img id="random-gif" alt="Random GIF">
 	<script>
-		const urls = [
-			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/bamboozled.gif',
-			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/its-a-trap-dominic-toretto.gif',
-			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/you-tricked-me-eleven.gif',
-			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/gotcha-b.gif',
-			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/rickroll-roll.gif',
-			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/gotcha.gif',
-			'https://raw.githubusercontent.com/scottmonster/fuc/master/gifs/tricked-deceived.gif'
+		const assetBaseUrl = new URL('./', location.href);
+		const filenames = [
+'bamboozled.gif',
+'dumb-youre-really-dumb.gif',
+'fool-you-fool.gif',
+'gordon-ramsay-idiot-sandwich.gif',
+'gotcha-b.gif',
+'gotcha-i-got-you.gif',
+'hes-a-fraud-joe-biden.gif',
+'hes-a-liar-liar.gif',
+'hes-a-liar-upset.gif',
+'hes-full-of-shit-ralph-macchio.gif',
+'it-was-all-a-lie-lie.gif',
+'kevinmcgarry-mcgarries.gif',
+'rickroll-roll.gif',
+'tricked-deceived.gif',
+'wedding-crashers-will-ferrell.gif',
+'we-got-em.gif',
+'you-tricked-me-gabby.gif'
 		];
 
-		const selectedUrl =
-			urls[Math.floor(Math.random() * urls.length)];
+		const selectedUrl = new URL(
+			filenames[Math.floor(Math.random() * filenames.length)],
+			assetBaseUrl
+		);
 
 		document.getElementById('random-gif').src = selectedUrl;
 	</script>
